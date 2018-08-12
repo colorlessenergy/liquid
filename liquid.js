@@ -65,16 +65,16 @@ class Liquid {
   animationLogic() {
     let allVideos = document.querySelector('.videos');
 
-    let amountOfPressesDown = 0;
-    let outlineTextUl = document.querySelector('.outline');
+    let amountOfPress = 0;
+    let outlineTextUl = document.querySelector('ul');
     let fillTextUl = document.querySelector('ul.active');
-    let amountOfPressesTop = 0;
     let currentUlPosition = 0;
     let timeoutAnimation;
 
-    let moveText = 0;
+
     let listContainer = document.querySelectorAll('.container-ul');
     let textContainer = document.querySelector('.liquid');
+    let moveText = 0;
 
     // when tapping / clicking on text
     let prevTapped = 0;
@@ -85,25 +85,32 @@ class Liquid {
       cur.addEventListener('click', function () {
         scrollDOM(false, this.getAttribute('data-key'));
 
-
         // container scrolls down
         if (prevTapped - this.getAttribute('data-key') <= 0) {
+
+          // remove the prev class
+          outlineTextUl.classList.remove('move' + prevTapped);
+          fillTextUl.classList.remove('move' + prevTapped);
+
+          // add a new class to move the text down
+
           outlineTextUl.classList.add('move' + this.getAttribute('data-key'))
           fillTextUl.classList.add('move' + this.getAttribute('data-key'));
 
           moveTextOnEvent('left', 0, this.getAttribute('data-key'))
         } else {
           // container scrolls up
-          let ulClass = outlineTextUl.className.split(' ').pop();
-          outlineTextUl.classList.remove(ulClass)
-          let ulActiveClass = fillTextUl.className.split(' ').pop();
-          fillTextUl.classList.remove(ulActiveClass)
+          outlineTextUl.classList.remove('move' + prevTapped);
+          fillTextUl.classList.remove('move' + prevTapped);
 
+          // add class to move text up
+          if (this.getAttribute('data-key') != 0) {
+            outlineTextUl.classList.add('move' + this.getAttribute('data-key'))
+            fillTextUl.classList.add('move' + this.getAttribute('data-key'));
+          }
           moveTextOnEvent('right', 0, this.getAttribute('data-key'))
 
         }
-
-
         prevTapped = this.getAttribute('data-key');
       })
     })
@@ -123,43 +130,41 @@ class Liquid {
       }
     });
 
+    /*
+    takes in a direction on where to scroll text
+    the second param is for when the text is clicked or tapped
+
+    moves the text up or down adds a class and remove the previous class
+    */
 
     function scrollDOM(dir, scrollTo) {
-      let condition;
-      let increment;
       if (dir == 'top') {
-        amountOfPressesTop += 1;
-        let ulClass = outlineTextUl.className.split(' ').pop();
-        outlineTextUl.classList.remove(ulClass)
-        let ulActiveClass = fillTextUl.className.split(' ').pop();
-        fillTextUl.classList.remove(ulActiveClass)
-        condition = amountOfPressesDown !== 0;
-        increment = -1;
+        outlineTextUl.classList.remove('move' + amountOfPress);
+        fillTextUl.classList.remove('move' + amountOfPress);
 
+        amountOfPress -= 1;
+
+        if (amountOfPress !== 0) {
+          outlineTextUl.classList.add('move' + amountOfPress);
+          fillTextUl.classList.add('move' + amountOfPress);
+        }
+
+        moveDOM(amountOfPress)
+        moveTextOnEvent('right', -1)
       } else if (dir == 'down') {
-        condition = (amountOfPressesDown + 1) !== allVideos.querySelectorAll('video').length + 1;
-        increment = 1;
-      } else {
-        condition = dir;
+        if (amountOfPress !== 0) {
+          outlineTextUl.classList.remove('move' + amountOfPress);
+          fillTextUl.classList.remove('move' + amountOfPress);
+        }
+        amountOfPress += 1;
+        moveDOM(amountOfPress)
+        outlineTextUl.classList.add('move' + amountOfPress)
+        fillTextUl.classList.add('move' + amountOfPress);
+        moveTextOnEvent('left', 1)
       }
-
-      if (condition) {
-        amountOfPressesDown += increment;
-        moveDOM(amountOfPressesDown)
-
-        if (dir == 'down') {
-          outlineTextUl.classList.add('move' + amountOfPressesDown)
-          fillTextUl.classList.add('move' + amountOfPressesDown);
-
-          moveTextOnEvent('left', 1)
-        } else if (dir == 'top') {
-          moveTextOnEvent('right', -1)
-        }
-      } else {
-        // this is for when tap / click on the text
-        if (scrollTo) {
-          moveDOM(scrollTo)
-        }
+      // this is for when tap / click on the text
+      if (scrollTo) {
+        moveDOM(scrollTo)
       }
     }
 

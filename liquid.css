@@ -9,8 +9,8 @@ ul li p {
   line-height: 221px;
   letter-spacing: -10px;
   display: inline-block;
-  text-transform: uppercase;
 }
+
 
 ul.outline li p {
   text-shadow: -1px -1px 0 rgba(255,255,255,.5), 1px -1px 0 rgba(255,255,255,.5), -1px 1px 0 rgba(255,255,255,.5), 1px 1px 0 rgba(255,255,255,.5);
@@ -29,21 +29,30 @@ body {
   font-family: impact;
 }
 
+.animate-skew-left {
+  transform: skewY(-10deg)
+}
+
+.animate-skew-right {
+  transform: skewY(10deg)
+}
+
+.liquid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
 .container-ul {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   text-align: center;
-  transition: 1.5s transform cubic-bezier(.23,1,.32,1);
-}
-
-.animate-skew-left {
-  transform: skewY(-10deg);
-}
-
-.animate-skew-right {
-  transform: skewY(10deg);
+  transition: transform .3s cubic-bezier(0.165, 0.84, 0.44, 1) 100ms;
 }
 
 ul {
@@ -53,7 +62,8 @@ ul {
   right: 0;
   margin: 0;
   padding: 0;
-  transition: 1.5s transform cubic-bezier(.23,1,.32,1);
+  text-transform: uppercase;
+  transition: transform 1s cubic-bezier(0.165, 0.84, 0.44, 1) 100ms;
 }
 
 .move1 {
@@ -76,15 +86,6 @@ ul {
   transform: translate3d(0, -1107px, 0);
 }
 
-.liquid {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transition: 1.5s transform cubic-bezier(.23,1,.32,1);
-}
-
 .container-ul--clip {
   clip: rect(215px, 1295px, 422px, 0px);
 }
@@ -94,6 +95,10 @@ ul {
     font-size: 100px;
     line-height: 80px;
     letter-spacing: -10px;
+  }
+
+  video {
+    height: 100vh;
   }
 
   .container-ul--clip {

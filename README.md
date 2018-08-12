@@ -16,7 +16,7 @@ _This library has been created because I made a animation and wanted other peopl
 
 ## Known Bugs
 
-_when tapping on the text and then trying to use arrow keys to move DOM doesnt move properly._
+_nothing right now._
 
 ## Support and contact details
 
