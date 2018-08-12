@@ -38,3 +38,15 @@ In the HTML
 ```html
 <div class="liquid"></div>
 ````
+
+now all you have to do is make a new Instance of the Liquid object
+
+```javascript
+new Liquid(listOfNames, ListOfVideos)
+
+// example you could do
+let newLiquid = new Liquid(['Goku', 'gohan', 'vegeta', 'trunks', 'piccolo', 'krillen'], ['assets/goku.mp4', 'assets/gohan.mp4', 'assets/vegeta.mp4', 'assets/trunks.mp4', 'assets/piccolo.mp4', 'assets/krillen.mp4'])
+````
+when making a constructor all you have to do is give a array of names and an array of video paths.
+
+you can see a example here [dbz-visual](https://colorlessenergy.github.io/liquid/)
