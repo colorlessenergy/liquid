@@ -31,13 +31,12 @@ body {
 
 .container-ul {
   position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    transition: 1.5s transform cubic-bezier(.23,1,.32,1);
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  transition: 1.5s transform cubic-bezier(.23,1,.32,1);
 }
-
 
 .animate-skew-left {
   transform: skewY(-10deg);
@@ -54,7 +53,7 @@ ul {
   right: 0;
   margin: 0;
   padding: 0;
-     transition: 1.5s transform cubic-bezier(.23,1,.32,1);
+  transition: 1.5s transform cubic-bezier(.23,1,.32,1);
 }
 
 .move1 {
