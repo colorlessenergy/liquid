@@ -6,7 +6,7 @@
 
 ## Description
 
-_This library has been created because I made a animation and wanted other people to make the same animations easily._
+_This library has been created because I made a animation and wanted other people to make the same animations easily. Use either the arrow key or press on the text to move the video and text_
 
 ## Setup/Installation Requirements
 
