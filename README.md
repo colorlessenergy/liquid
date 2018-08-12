@@ -27,3 +27,14 @@ _If you run into any issues or have questions, ideas or concerns contact me at b
 _HTML_
 _CSS_
 _JavaScript_
+
+
+# DOCS
+
+to get it working all you need to is link the _liquid.css_ and _liquid.js_ file to your index.html
+
+In the HTML
+
+```html
+<div class="liquid"></div>
+````
